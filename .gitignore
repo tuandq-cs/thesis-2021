@@ -1,3 +1,11 @@
+# My custom
+.idea
+inferences
+videos
+test_imgs
+logs
+models
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
