@@ -1,3 +1,4 @@
+import argparse
 import os
 
 from appearance_module.hyperface import Hyperface
@@ -10,6 +11,11 @@ from system import SystemWrapper
 from tracking_module.sort import Sort
 
 if __name__ == '__main__':
+    # Argument
+    parser = argparse.ArgumentParser(description='HyperFace training script')
+    parser.add_argument('--video_path', required=True, help='Input video path')
+    args = parser.parse_args()
+
     project_dir = os.path.dirname(os.path.abspath(__file__))
     inference_root_path = os.path.join(project_dir, 'inferences')
 
@@ -42,5 +48,4 @@ if __name__ == '__main__':
                            smile_model=smile_model,
                            landmark_model=landmark_model,
                            reenactment_model=reenactment_model)
-    result = system.get_result(
-        "/storageStudents/tuanld/tuan-quynh/tuan-dong/Thesis/videos/group_selfie_3/group_selfie_3.mp4")
+    result = system.get_result(args.video_path)
