@@ -3,7 +3,6 @@ from typing import Any
 import chainer
 import chainer.functions as F
 import chainer.links as L
-import cupy as cp
 import cv2
 import numpy as np
 
@@ -172,19 +171,16 @@ class Hyperface(AppearanceModel):
         chainer.serializers.load_npz(self.model_path, model)
         self.model = model
         # Setup GPU
-        if config.gpu >= 0:
-            self._use_gpu(gpu=config.gpu)
-        else:
-            self._use_cpu()
+        self._use_cpu()
 
     def _use_cpu(self):
         self._xp = np
 
-    def _use_gpu(self, gpu: int):
-        chainer.cuda.check_cuda_available()
-        chainer.cuda.get_device_from_id(gpu).use()
-        self.model.to_gpu()
-        self._xp = cp
+    # def _use_gpu(self, gpu: int):
+    #     chainer.cuda.check_cuda_available()
+    #     chainer.cuda.get_device_from_id(gpu).use()
+    #     self.model.to_gpu()
+    #     self._xp = cp
 
     @staticmethod
     def _cvt_variable(v: Any) -> np.ndarray:
