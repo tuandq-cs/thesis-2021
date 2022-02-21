@@ -27,7 +27,6 @@ dependencies:
       - cachetools==5.0.0
       - chainer==2.0.2
       - charset-normalizer==2.0.11
-      - cupy==8.3.0
       - cycler==0.11.0
       - decord==0.6.0
       - dlib==19.23.0
